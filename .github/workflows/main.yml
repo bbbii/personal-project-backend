@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/personal-project-backend
+  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/backend-server
   VERSION: ${{ github.sha }}
-  NAME: personal-project-backend
+  NAME: backend-server
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
         run: |
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GHCR_TOKEN }}
           docker buildx create --name arm64builder --use
-          docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t ghcr.io/bbbii/personal-project-backend:latest --push .
+          docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t ghcr.io/bbbii/backend-server:latest --push .
           docker logout
           
   deploy:
@@ -78,14 +78,14 @@ jobs:
             fi
             echo "pass mysql-container"
 
-            if [[ "$(docker ps -qa --filter ancestor=backend-deploy-test/backend-deploy-server:latest)" ]]; then
-              docker rm -f $(docker ps -qa --filter ancestor=backend-deploy-test/backend-deploy-server:latest)
+            if [[ "$(docker ps -qa --filter ancestor=backend-deploy-test/backend-deploy-test-server:latest)" ]]; then
+              docker rm -f $(docker ps -qa --filter ancestor=backend-deploy-test/backend-deploy-test-server:latest)
             fi
-            echo "pass backend-deploy-test/backend-deploy-server:latest"
+            echo "pass backend-deploy-test/backend-deploy-test-server:latest"
 
             echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
-            docker pull ghcr.io/bbbii/personal-project-backend:latest
+            docker pull ghcr.io/bbbii/backend-server:latest
 
             docker image prune -f
             docker logout
