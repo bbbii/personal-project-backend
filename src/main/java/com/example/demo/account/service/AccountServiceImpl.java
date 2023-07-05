@@ -1,6 +1,7 @@
 package com.example.demo.account.service;
 
-import com.example.demo.account.controller.form.AccountResponseForm;
+import com.example.demo.account.controller.form.AccountLoginRequestForm;
+import com.example.demo.account.controller.form.AccountLoginResponseForm;
 import com.example.demo.account.entity.MemberAccount;
 import com.example.demo.account.repository.AccountRepository;
 import com.example.demo.account.service.request.AccountRegisterRequest;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -33,5 +35,21 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(request.toAccount());
 
         return true;
+    }
+
+    @Override
+    public AccountLoginResponseForm login(AccountLoginRequestForm requestForm){
+        final Optional<MemberAccount> memberAccount =
+                accountRepository.findByEmail(requestForm.getEmail());
+        if (memberAccount.isEmpty()) {
+            log.info("로그인 실패!");
+            return new AccountLoginResponseForm(null);
+        }
+        MemberAccount account = memberAccount.get();
+        if (account.getPassword().equals(requestForm.getPassword())) {
+            log.info("로그인 성공!");
+            return new AccountLoginResponseForm(UUID.randomUUID());
+        }
+        return new AccountLoginResponseForm(null);
     }
 }

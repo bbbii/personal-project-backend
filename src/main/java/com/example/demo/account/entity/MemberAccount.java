@@ -1,27 +1,23 @@
 package com.example.demo.account.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+@Getter
 @Entity
 @ToString
 @NoArgsConstructor
 public class MemberAccount {
 
     @Id
-    @Getter
+    @Column(name = "account_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     private String email;
 
-    @Getter
     private String password;
 
     public MemberAccount(String email, String password) {
