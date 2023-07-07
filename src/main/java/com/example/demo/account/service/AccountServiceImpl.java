@@ -2,8 +2,12 @@ package com.example.demo.account.service;
 
 import com.example.demo.account.controller.form.AccountLoginRequestForm;
 import com.example.demo.account.controller.form.AccountLoginResponseForm;
-import com.example.demo.account.entity.MemberAccount;
+import com.example.demo.account.entity.Account;
+import com.example.demo.account.entity.AccountRole;
+import com.example.demo.account.entity.Role;
 import com.example.demo.account.repository.AccountRepository;
+import com.example.demo.account.repository.AccountRoleRepository;
+import com.example.demo.account.repository.RoleRepository;
 import com.example.demo.account.service.request.AccountRegisterRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +22,12 @@ import java.util.UUID;
 public class AccountServiceImpl implements AccountService {
 
     final private AccountRepository accountRepository;
+    final private AccountRoleRepository accountRoleRepository;
+    final private RoleRepository roleRepository;
 
     @Override
     public Boolean checkEmailDuplication(String email) {
-        Optional<MemberAccount> maybeAccount = accountRepository.findByEmail(email);
+        Optional<Account> maybeAccount = accountRepository.findByEmail(email);
 
         if (maybeAccount.isPresent()) {
             return false;
@@ -32,20 +38,26 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Boolean signUp(AccountRegisterRequest request) {
-        accountRepository.save(request.toAccount());
+        Account account = accountRepository.save(request.toAccount());
+
+        final Role role = roleRepository.findByRoleType(request.getRoleType()).get();
+        final AccountRole accountRole = new AccountRole(account, role);
+        accountRoleRepository.save(accountRole);
+
+        account.setAccountRole(accountRole);
 
         return true;
     }
 
     @Override
     public AccountLoginResponseForm login(AccountLoginRequestForm requestForm){
-        final Optional<MemberAccount> memberAccount =
+        final Optional<Account> memberAccount =
                 accountRepository.findByEmail(requestForm.getEmail());
         if (memberAccount.isEmpty()) {
             log.info("로그인 실패!");
             return new AccountLoginResponseForm(null);
         }
-        MemberAccount account = memberAccount.get();
+        Account account = memberAccount.get();
         if (account.getPassword().equals(requestForm.getPassword())) {
             log.info("로그인 성공!");
             return new AccountLoginResponseForm(UUID.randomUUID());

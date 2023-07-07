@@ -9,19 +9,28 @@ import lombok.ToString;
 @Entity
 @ToString
 @NoArgsConstructor
-public class MemberAccount {
+public class Account {
 
     @Id
     @Column(name = "account_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long accountId;
 
     private String email;
 
     private String password;
 
-    public MemberAccount(String email, String password) {
+    @OneToOne(mappedBy = "account", fetch = FetchType.LAZY)
+    private AccountRole accountRole;
+
+    public Account(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public void setAccountRole(AccountRole accountRole) {
+        this.accountRole = accountRole;
+
+        accountRole.setAccount(this);
     }
 }
