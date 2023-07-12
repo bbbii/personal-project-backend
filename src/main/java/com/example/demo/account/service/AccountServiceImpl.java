@@ -55,13 +55,13 @@ public class AccountServiceImpl implements AccountService {
                 accountRepository.findByEmail(requestForm.getEmail());
         if (memberAccount.isEmpty()) {
             log.info("로그인 실패!");
-            return new AccountLoginResponseForm(null);
+            return new AccountLoginResponseForm(null, null);
         }
         Account account = memberAccount.get();
         if (account.getPassword().equals(requestForm.getPassword())) {
-            log.info("로그인 성공!");
-            return new AccountLoginResponseForm(UUID.randomUUID());
+            log.info("로그인 성공!: " + account.getEmail());
+            return new AccountLoginResponseForm(UUID.randomUUID(), account.getEmail());
         }
-        return new AccountLoginResponseForm(null);
+        return new AccountLoginResponseForm(null, null);
     }
 }

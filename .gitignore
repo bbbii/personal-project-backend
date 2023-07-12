@@ -39,3 +39,4 @@ out/
 ### 보안 ###
 application.yaml
 aws.properties
+redis.properties
