@@ -29,10 +29,13 @@ public class Product {
     @Setter
     private String productTags;
 
-    public Product(String productName, Integer productPrice, String productDescription, String productTags) {
+    private String email;
+
+    public Product(String productName, Integer productPrice, String productDescription, String productTags, String email) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
         this.productTags = productTags;
+        this.email = email;
     }
 }

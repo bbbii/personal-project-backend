@@ -33,4 +33,18 @@ public class ProductController {
 
         return returnedProductList;
     }
+
+    @GetMapping("/{productId}")
+    public Product productRead (@PathVariable("productId") Long productId){
+        log.info("readProduct()");
+
+        return productService.read(productId);
+    }
+
+    @DeleteMapping("/{productId}")
+    public Boolean productDelete (@PathVariable("productId") Long productId){
+        log.info("deleteProduct()");
+
+        return productService.delete(productId);
+    }
 }

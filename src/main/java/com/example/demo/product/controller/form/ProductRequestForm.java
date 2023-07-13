@@ -8,13 +8,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductRequestForm {
 
-    final private Long accountId;
     final private String productName;
     final private Integer productPrice;
     final private String productDescription;
     final private String productTags;
+    final private String email;
 
     public Product toProduct(){
-        return new Product(productName, productPrice, productDescription ,productTags);
+        return new Product(productName, productPrice, productDescription ,productTags, email);
     }
 }
