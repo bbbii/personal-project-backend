@@ -12,7 +12,7 @@ import lombok.ToString;
 public class AccountRegisterForm {
     private String email;
     private String password;
-    private RoleType roleType;
+//    private RoleType roleType;
 
 //    public AccountRegisterForm(String email, String password) {
 //        this.email = email;
@@ -20,6 +20,6 @@ public class AccountRegisterForm {
 //    }
 
     public AccountRegisterRequest toAccountRegisterRequest() {
-        return new AccountRegisterRequest(email, password, roleType);
+        return new AccountRegisterRequest(email, password);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.product.controller;
 
+import com.example.demo.product.controller.form.ProductRequestForm;
 import com.example.demo.product.entity.Product;
 import com.example.demo.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,13 @@ import java.util.List;
 public class ProductController {
 
     final private ProductService productService;
+
+    @PostMapping("/register")
+    public Product productRegister(@RequestBody ProductRequestForm productRequestForm) {
+        log.info("productRegister()");
+
+        return productService.register(productRequestForm);
+    }
 
     @GetMapping("/list")
     public List<Product> productList() {

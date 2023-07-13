@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 public class AccountRegisterRequest {
     final private String email;
     final private String password;
-    final private RoleType roleType;
+//    final private RoleType roleType;
 
     public Account toAccount() {
         return new Account(email, password);

@@ -1,6 +1,5 @@
 package com.example.demo.product.service;
 
-import com.example.demo.account.repository.AccountRepository;
 import com.example.demo.product.controller.form.ProductRequestForm;
 import com.example.demo.product.entity.Product;
 import com.example.demo.product.repository.ProductRepository;
@@ -17,6 +16,13 @@ import java.util.List;
 public class ProductServiceImpl implements  ProductService{
 
     final private ProductRepository productRepository;
+
+    @Override
+    public Product register(ProductRequestForm requestForm) {
+        Product product = requestForm.toProduct();
+        productRepository.save(product);
+        return product;
+    }
 
     @Override
     public List<Product> list(){

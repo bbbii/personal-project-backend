@@ -40,11 +40,11 @@ public class AccountServiceImpl implements AccountService {
     public Boolean signUp(AccountRegisterRequest request) {
         Account account = accountRepository.save(request.toAccount());
 
-        final Role role = roleRepository.findByRoleType(request.getRoleType()).get();
-        final AccountRole accountRole = new AccountRole(account, role);
-        accountRoleRepository.save(accountRole);
+//        final Role role = roleRepository.findByRoleType(request.getRoleType()).get();
+//        final AccountRole accountRole = new AccountRole(account, role);
+//        accountRoleRepository.save(accountRole);
 
-        account.setAccountRole(accountRole);
+//        account.setAccountRole(accountRole);
 
         return true;
     }

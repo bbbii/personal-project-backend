@@ -23,8 +23,16 @@ public class Product {
     @Setter
     private Integer productPrice;
 
-    public Product(String productName, Integer productPrice) {
+    @Setter
+    private String productDescription;
+
+    @Setter
+    private String productTags;
+
+    public Product(String productName, Integer productPrice, String productDescription, String productTags) {
         this.productName = productName;
         this.productPrice = productPrice;
+        this.productDescription = productDescription;
+        this.productTags = productTags;
     }
 }

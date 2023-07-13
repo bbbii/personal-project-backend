@@ -11,8 +11,10 @@ public class ProductRequestForm {
     final private Long accountId;
     final private String productName;
     final private Integer productPrice;
+    final private String productDescription;
+    final private String productTags;
 
     public Product toProduct(){
-        return new Product(productName, productPrice);
+        return new Product(productName, productPrice, productDescription ,productTags);
     }
 }
