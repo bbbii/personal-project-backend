@@ -1,7 +1,5 @@
 package com.example.demo.product.service;
 
-import com.example.demo.account.entity.Account;
-import com.example.demo.account.repository.AccountRepository;
 import com.example.demo.product.controller.form.ProductRequestForm;
 import com.example.demo.product.entity.Product;
 import com.example.demo.product.repository.ProductRepository;
@@ -47,7 +45,6 @@ public class ProductServiceImpl implements  ProductService {
     @Override
     public Boolean delete(Long productId){
         Optional<Product> maybeProduct = productRepository.findById(productId);
-//        Long getAccountId = accountRepository.findByEmail(email).get().getAccountId();
 
         if(maybeProduct.isPresent()){
             productRepository.deleteById(productId);

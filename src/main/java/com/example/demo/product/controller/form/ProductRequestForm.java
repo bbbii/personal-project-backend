@@ -12,9 +12,9 @@ public class ProductRequestForm {
     final private Integer productPrice;
     final private String productDescription;
     final private String productTags;
-    final private String email;
+    final private String receivedEmail;
 
     public Product toProduct(){
-        return new Product(productName, productPrice, productDescription ,productTags, email);
+        return new Product(productName, productPrice, productDescription ,productTags, receivedEmail);
     }
 }

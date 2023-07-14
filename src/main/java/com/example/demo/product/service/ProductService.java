@@ -8,6 +8,7 @@ import java.util.List;
 public interface ProductService {
 
     Product register (ProductRequestForm requestForm);
+
     List<Product> list();
 
     Product read(Long productId);
