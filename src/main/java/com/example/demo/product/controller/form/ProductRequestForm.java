@@ -13,8 +13,11 @@ public class ProductRequestForm {
     final private String productDescription;
     final private String productTags;
     final private String receivedEmail;
+    final private String productImageName;
 
     public Product toProduct(){
-        return new Product(productName, productPrice, productDescription ,productTags, receivedEmail);
+        return new Product(productName, productPrice,
+                           productDescription ,productTags,
+                           receivedEmail, productImageName);
     }
 }

@@ -32,11 +32,17 @@ public class Product {
     @Setter
     private String registerEmail;
 
-    public Product(String productName, Integer productPrice, String productDescription, String productTags, String receivedEmail) {
+    @Setter
+    private String productImageName;
+
+    public Product(String productName, Integer productPrice,
+                   String productDescription, String productTags,
+                   String receivedEmail, String productImageName) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
         this.productTags = productTags;
         this.registerEmail = receivedEmail;
+        this.productImageName = productImageName;
     }
 }
