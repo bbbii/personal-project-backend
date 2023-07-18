@@ -47,4 +47,12 @@ public class ProductController {
 
         return productService.delete(productId);
     }
+
+    @PutMapping("/{productId}")
+    public Product productModify (@PathVariable("productId") Long productId,
+                                  @RequestBody ProductRequestForm productRequestForm) {
+        log.info("modifyProduct(): " + productRequestForm + ", id: " + productId);
+
+        return productService.modify(productId, productRequestForm);
+    }
 }

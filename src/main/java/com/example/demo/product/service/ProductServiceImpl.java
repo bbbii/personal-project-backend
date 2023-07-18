@@ -27,7 +27,8 @@ public class ProductServiceImpl implements  ProductService {
 
     @Override
     public List<Product> list(){
-        return productRepository.findAll(Sort.by(Sort.Direction.DESC, "productId"));
+        return productRepository.findAll(
+                Sort.by(Sort.Direction.DESC, "productId"));
     }
 
     @Override
@@ -51,5 +52,26 @@ public class ProductServiceImpl implements  ProductService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Product modify(Long productId, ProductRequestForm productRequestForm) {
+        Optional<Product> maybeJpaProduct = productRepository.findById(productId);
+
+        if (maybeJpaProduct.isEmpty()) {
+            log.info("정보가 없습니다!");
+            return null;
+        }
+
+        Product product = maybeJpaProduct.get();
+        product.setProductName(productRequestForm.getProductName());
+        product.setProductPrice(productRequestForm.getProductPrice());
+        product.setProductDescription(productRequestForm.getProductDescription());
+        product.setProductTags(productRequestForm.getProductTags());
+        product.setProductImageName(productRequestForm.getProductImageName());
+
+        productRepository.save(product);
+        log.info(String.valueOf(product.getProductId()));
+        return product;
     }
 }

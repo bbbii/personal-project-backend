@@ -14,4 +14,6 @@ public interface ProductService {
     Product read(Long productId);
 
     Boolean delete(Long productId);
+
+    Product modify(Long productId, ProductRequestForm productRequestForm);
 }
