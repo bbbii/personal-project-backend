@@ -4,6 +4,8 @@ import com.example.demo.product.entity.Product;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @RequiredArgsConstructor
 public class ProductRequestForm {
@@ -13,11 +15,12 @@ public class ProductRequestForm {
     final private String productDescription;
     final private String productTags;
     final private String receivedEmail;
-    final private String productImageName;
+    final private String mainImageName;
+    final private List<String> imageNameList;
 
     public Product toProduct(){
         return new Product(productName, productPrice,
                            productDescription ,productTags,
-                           receivedEmail, productImageName);
+                           receivedEmail, mainImageName, imageNameList);
     }
 }

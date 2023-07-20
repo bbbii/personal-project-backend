@@ -14,7 +14,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements  ProductService {
+public class ProductServiceImpl implements ProductService {
 
     final private ProductRepository productRepository;
 
@@ -68,7 +68,8 @@ public class ProductServiceImpl implements  ProductService {
         product.setProductPrice(productRequestForm.getProductPrice());
         product.setProductDescription(productRequestForm.getProductDescription());
         product.setProductTags(productRequestForm.getProductTags());
-        product.setProductImageName(productRequestForm.getProductImageName());
+        product.setMainImageName(productRequestForm.getMainImageName());
+        product.setImageNameList(productRequestForm.getImageNameList());
 
         productRepository.save(product);
         log.info(String.valueOf(product.getProductId()));

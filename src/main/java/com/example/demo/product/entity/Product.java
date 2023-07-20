@@ -1,14 +1,14 @@
 package com.example.demo.product.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class Product {
@@ -17,32 +17,30 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @Setter
     private String productName;
 
-    @Setter
     private Integer productPrice;
 
-    @Setter
     private String productDescription;
 
-    @Setter
     private String productTags;
 
-    @Setter
     private String registerEmail;
 
-    @Setter
-    private String productImageName;
+    private String mainImageName;
+
+    private List<String> imageNameList;
 
     public Product(String productName, Integer productPrice,
                    String productDescription, String productTags,
-                   String receivedEmail, String productImageName) {
+                   String registerEmail, String mainImageName,
+                   List<String> imageNameList) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
         this.productTags = productTags;
-        this.registerEmail = receivedEmail;
-        this.productImageName = productImageName;
+        this.registerEmail = registerEmail;
+        this.mainImageName = mainImageName;
+        this.imageNameList = imageNameList;
     }
 }
