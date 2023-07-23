@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CartRequestForm {
 
-    final private Long accountId;
+    final private String email;
 
     final private Long productId;
 
