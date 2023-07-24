@@ -11,4 +11,5 @@ public class CartItemResponseForm {
     final private String productName;
     final private Integer productPrice;
     final private Integer productCount;
+    final private String mainImageName;
 }

@@ -54,7 +54,7 @@ public class CartServiceImpl implements CartService {
             CartItemResponseForm responseForm = new CartItemResponseForm(
                     item.getId(), item.getProduct().getProductId(),
                     item.getProduct().getProductName(), item.getProduct().getProductPrice(),
-                    item.getItemCount()
+                    item.getItemCount(), item.getProduct().getMainImageName()
             );
             responseFormList.add(responseForm);
         }
@@ -97,7 +97,7 @@ public class CartServiceImpl implements CartService {
                 CartItemResponseForm responseForm = new CartItemResponseForm(
                         item.getId(), item.getProduct().getProductId(),
                         item.getProduct().getProductName(), item.getProduct().getProductPrice(),
-                        item.getItemCount()
+                        item.getItemCount(), item.getProduct().getMainImageName()
                 );
                 responseFormList.add(responseForm);
             }
@@ -131,7 +131,7 @@ public class CartServiceImpl implements CartService {
             CartItemResponseForm responseForm = new CartItemResponseForm(
                     item.getId(), item.getProduct().getProductId(),
                     item.getProduct().getProductName(), item.getProduct().getProductPrice(),
-                    item.getItemCount()
+                    item.getItemCount(), item.getProduct().getMainImageName()
             );
             responseFormList.add(responseForm);
         }
@@ -171,7 +171,7 @@ public class CartServiceImpl implements CartService {
             CartItemResponseForm responseForm = new CartItemResponseForm(
                     item.getId(), item.getProduct().getProductId(),
                     item.getProduct().getProductName(), item.getProduct().getProductPrice(),
-                    item.getItemCount()
+                    item.getItemCount(), item.getProduct().getMainImageName()
             );
             responseFormList.add(responseForm);
         }
@@ -205,7 +205,7 @@ public class CartServiceImpl implements CartService {
                 }
             }
         }
-        log.info("장바구니에서 상품 삭제 완료!");
+        log.info("삭제 완료");
         cartRepository.save(cart);
 
         List<CartItem> cartItemList = cartItemRepository.findAllByCart(cart);
@@ -215,7 +215,7 @@ public class CartServiceImpl implements CartService {
             CartItemResponseForm responseForm = new CartItemResponseForm(
                     item.getId(), item.getProduct().getProductId(),
                     item.getProduct().getProductName(), item.getProduct().getProductPrice(),
-                    item.getItemCount()
+                    item.getItemCount(), item.getProduct().getMainImageName()
             );
             responseFormList.add(responseForm);
         }

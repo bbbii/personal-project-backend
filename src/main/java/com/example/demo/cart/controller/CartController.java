@@ -29,7 +29,7 @@ public class CartController {
     }
 
     @DeleteMapping("/{id}")
-    public List<CartItemResponseForm> deleteCartItem(@RequestParam String email, @PathVariable("id") Long id) {
+    public List<CartItemResponseForm> deleteCartItem(@RequestParam("email") String email, @PathVariable("id") Long id) {
         return cartService.delete(email, id);
     }
 
