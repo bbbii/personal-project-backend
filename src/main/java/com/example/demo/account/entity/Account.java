@@ -12,10 +12,10 @@ import lombok.ToString;
 public class Account {
 
     @Id
-    @Column(name = "account_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
 
+    @Column(unique = true)
     private String email;
 
     private String password;

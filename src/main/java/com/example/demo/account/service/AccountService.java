@@ -2,6 +2,7 @@ package com.example.demo.account.service;
 
 import com.example.demo.account.controller.form.AccountLoginRequestForm;
 import com.example.demo.account.controller.form.AccountLoginResponseForm;
+import com.example.demo.account.entity.Account;
 import com.example.demo.account.service.request.AccountRegisterRequest;
 
 public interface AccountService {
@@ -10,4 +11,6 @@ public interface AccountService {
     Boolean signUp(AccountRegisterRequest request);
 
     AccountLoginResponseForm login(AccountLoginRequestForm requestForm);
+
+    Account findByAccount(Long accountId);
 }

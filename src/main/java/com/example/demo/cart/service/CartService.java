@@ -1,13 +1,17 @@
 package com.example.demo.cart.service;
 
+import com.example.demo.cart.controller.form.CartRequestForm;
 import com.example.demo.cart.service.response.CartItemResponseForm;
 
 import java.util.List;
 
 public interface CartService {
-    List<CartItemResponseForm> cartList(String email);
 
-//    void addItemToCart(Long cartId, Long productId, Integer count);
-//
-//    void removeItemFromCart(Long cartId, Long cartItemId);
+    List<CartItemResponseForm> getList(String email);
+
+    List<CartItemResponseForm> addItem(CartRequestForm requestForm);
+
+    List<CartItemResponseForm> delete(String email, Long id);
+
+    List<CartItemResponseForm> deleteList(String email, List<Long> idList);
 }

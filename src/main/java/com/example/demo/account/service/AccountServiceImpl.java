@@ -64,4 +64,9 @@ public class AccountServiceImpl implements AccountService {
         }
         return new AccountLoginResponseForm(null, null);
     }
+
+    @Override
+    public Account findByAccount(Long accountId) {
+        return accountRepository.findById(accountId).get();
+    }
 }

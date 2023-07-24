@@ -11,5 +11,5 @@ public class CartRequestForm {
 
     final private Long productId;
 
-    final private Integer count;
+    final private Integer productCount;
 }

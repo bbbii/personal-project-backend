@@ -8,18 +8,20 @@ import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 public class Cart {
 
     @Id
+    @Getter
     @Column(name = "cart_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @Setter
+    private int count;
 
-    private Integer count;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account")
+    @Setter
+    private Account account;
 }

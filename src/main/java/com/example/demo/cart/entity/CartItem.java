@@ -5,13 +5,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-
+@Entity
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
 public class CartItem {
 
@@ -20,23 +17,23 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    private Integer itemCount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    private Integer count;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createDate;
-
-    public CartItem(Cart cart, Product product, Integer count, LocalDate createDate) {
+    public CartItem(Integer itemCount, Cart cart, Product product) {
+        this.itemCount = itemCount;
         this.cart = cart;
         this.product = product;
-        this.count = count;
-        this.createDate = createDate;
+    }
+
+    public void updateItemCount(Integer newCount) {
+        this.itemCount = newCount;
     }
 }
