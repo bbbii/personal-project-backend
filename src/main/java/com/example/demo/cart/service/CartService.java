@@ -14,4 +14,6 @@ public interface CartService {
     List<CartItemResponseForm> delete(String email, Long id);
 
     List<CartItemResponseForm> deleteList(String email, List<Long> idList);
+
+    List<CartItemResponseForm> updateCartItemProductCount(String email, Long productId, Integer dCount);
 }

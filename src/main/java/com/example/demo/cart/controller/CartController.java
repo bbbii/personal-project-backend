@@ -34,7 +34,19 @@ public class CartController {
     }
 
     @DeleteMapping
-    public List<CartItemResponseForm> deleteCartItemList(String email, @RequestParam("idList") List<Long> idList) {
-        return cartService.deleteList(email, idList);
+    public List<CartItemResponseForm> deleteCartItemList(@RequestParam("email") String email,
+                                                         @RequestParam("arr") List<Long> idArr) {
+        return cartService.deleteList(email, idArr);
     }
+
+//    @PutMapping("/update")
+//    public List<CartItemResponseForm> updateCartItemProductCount(String email, Long productId, Integer dCount) {
+//        List<CartItemResponseForm> responseFormList = cartService.updateCartItemProductCount(email, productId, dCount);
+//
+//        if(responseFormList == null) {
+//            return ResponseEntity.badRequest().build();
+//        }
+//
+//        return ResponseEntity.ok(responseFormList);
+//    }
 }

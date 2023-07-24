@@ -111,10 +111,7 @@ public class CartServiceImpl implements CartService {
         Optional<CartItem> maybeCartItem = cartItemRepository.findByCartAndProduct(cart, product);
 
         if (maybeCartItem.isPresent()) {
-            CartItem cartItem = maybeCartItem.get();
-            int updatedItemCount = cartItem.getItemCount() + requestForm.getProductCount();
-            cartItem.updateItemCount(updatedItemCount);
-            cartItemRepository.save(cartItem);
+            updateCartItemProductCount(requestForm.getEmail(), requestForm.getProductId(), requestForm.getProductCount());
         } else {
             CartItem cartItem = new CartItem(requestForm.getProductCount(), cart, product);
             cartItemList.add(cartItem);
@@ -125,6 +122,56 @@ public class CartServiceImpl implements CartService {
         cart.setAccount(account);
         cartRepository.save(cart);
 
+        List<CartItemResponseForm> responseFormList = new ArrayList<>();
+
+        for (CartItem item : cartItemList) {
+            CartItemResponseForm responseForm = new CartItemResponseForm(
+                    item.getId(), item.getProduct().getProductId(),
+                    item.getProduct().getProductName(), item.getProduct().getProductPrice(),
+                    item.getItemCount(), item.getProduct().getMainImageName()
+            );
+            responseFormList.add(responseForm);
+        }
+
+        return responseFormList;
+    }
+
+    @Override
+    @Transactional
+    public List<CartItemResponseForm> updateCartItemProductCount(String email, Long productId, Integer dCount) {
+
+        Optional<Account> maybeAccount = accountRepository.findByEmail(email);
+        if (maybeAccount.isEmpty()) {
+            log.info("사용자를 찾을 수 없습니다");
+            return null;
+        }
+        Account account = maybeAccount.get();
+
+        Optional<Product> maybeProduct = productRepository.findById(productId);
+        if (maybeProduct.isEmpty()) {
+            log.info("상품을 찾을 수 없습니다");
+            return null;
+        }
+        Product product = maybeProduct.get();
+
+        Optional<Cart> maybeCart = cartRepository.findByAccount(account);
+        if (maybeCart.isEmpty()) {
+            log.info("장바구니를 찾을 수 없습니다");
+            return null;
+        }
+        Cart cart = maybeCart.get();
+
+        Optional<CartItem> maybeCartItem = cartItemRepository.findByCartAndProduct(cart, product);
+        if (maybeCartItem.isPresent()) {
+            CartItem cartItem = maybeCartItem.get();
+            int updatedItemCount = cartItem.getItemCount() + dCount;
+            cartItem.updateItemCount(updatedItemCount);
+            cartItemRepository.save(cartItem);
+        } else {
+            log.info("장바구니 항목을 찾을 수 없습니다");
+            return null;
+        }
+        List<CartItem> cartItemList = cartItemRepository.findAllByCart(cart);
         List<CartItemResponseForm> responseFormList = new ArrayList<>();
 
         for (CartItem item : cartItemList) {
