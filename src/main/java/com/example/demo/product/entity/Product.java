@@ -39,8 +39,6 @@ public class Product {
 
     private String productDescription;
 
-    private String registerEmail;
-
     private String mainImageName;
 
     private List<String> imageNameList;
@@ -49,8 +47,7 @@ public class Product {
                    String productOrigin, String productProducer,
                    Integer productAmount, String productAmountUnit,
                    Integer productWeight, String productWeightUnit,
-                   String startDate, String endDate,
-                   String productDescription, String registerEmail,
+                   String startDate, String endDate, String productDescription,
                    String mainImageName, List<String> imageNameList) {
         this.productName = productName;
         this.productPrice = productPrice;
@@ -63,7 +60,6 @@ public class Product {
         this.startDate = startDate;
         this.endDate = endDate;
         this.productDescription = productDescription;
-        this.registerEmail = registerEmail;
         this.mainImageName = mainImageName;
         this.imageNameList = imageNameList;
     }

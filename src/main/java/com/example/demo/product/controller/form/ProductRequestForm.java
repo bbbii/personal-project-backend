@@ -22,13 +22,12 @@ public class ProductRequestForm {
     final private String endDate;
     final private String productDescription;
 
-    final private String receivedEmail;
     final private String mainImageName;
     final private List<String> imageNameList;
 
     public Product toProduct(){
         return new Product(productName, productPrice, productOrigin, productProducer, productAmount,
                 productAmountUnit, productWeight, productWeightUnit, startDate, endDate,
-                productDescription, receivedEmail, mainImageName, imageNameList);
+                productDescription, mainImageName, imageNameList);
     }
 }
