@@ -38,5 +38,7 @@ out/
 
 ### 보안 ###
 application.yaml
+application.properties
 aws.properties
 redis.properties
+payment.properties

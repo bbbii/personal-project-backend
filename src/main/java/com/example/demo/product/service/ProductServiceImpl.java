@@ -66,8 +66,15 @@ public class ProductServiceImpl implements ProductService {
         Product product = maybeJpaProduct.get();
         product.setProductName(productRequestForm.getProductName());
         product.setProductPrice(productRequestForm.getProductPrice());
+        product.setProductOrigin(productRequestForm.getProductOrigin());
+        product.setProductProducer(productRequestForm.getProductProducer());
+        product.setProductAmount(productRequestForm.getProductAmount());
+        product.setProductAmountUnit(productRequestForm.getProductAmountUnit());
+        product.setProductWeight(productRequestForm.getProductWeight());
+        product.setProductWeightUnit(productRequestForm.getProductWeightUnit());
+        product.setStartDate(productRequestForm.getStartDate());
+        product.setEndDate(productRequestForm.getEndDate());
         product.setProductDescription(productRequestForm.getProductDescription());
-        product.setProductTags(productRequestForm.getProductTags());
         product.setMainImageName(productRequestForm.getMainImageName());
         product.setImageNameList(productRequestForm.getImageNameList());
 

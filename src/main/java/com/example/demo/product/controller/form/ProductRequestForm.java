@@ -12,15 +12,23 @@ public class ProductRequestForm {
 
     final private String productName;
     final private Integer productPrice;
+    final private String productOrigin;
+    final private String productProducer;
+    final private Integer productAmount;
+    final private String productAmountUnit;
+    final private Integer productWeight;
+    final private String productWeightUnit;
+    final private String startDate;
+    final private String endDate;
     final private String productDescription;
-    final private String productTags;
+
     final private String receivedEmail;
     final private String mainImageName;
     final private List<String> imageNameList;
 
     public Product toProduct(){
-        return new Product(productName, productPrice,
-                           productDescription ,productTags,
-                           receivedEmail, mainImageName, imageNameList);
+        return new Product(productName, productPrice, productOrigin, productProducer, productAmount,
+                productAmountUnit, productWeight, productWeightUnit, startDate, endDate,
+                productDescription, receivedEmail, mainImageName, imageNameList);
     }
 }
