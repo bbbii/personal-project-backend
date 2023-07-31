@@ -1,9 +1,13 @@
 name: Deploy
 
-on:
-  repository_dispatch:
-    types: [TEST_FINISH_TRIGGER]
+# on:
+#   repository_dispatch:
+#     types: [TEST_FINISH_TRIGGER]
 
+on:
+  push:
+    branches: ["main"]
+    
 env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/personal-project-backend
   VERSION: ${{ github.sha }}
